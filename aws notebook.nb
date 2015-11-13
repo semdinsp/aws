@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28308,        750]
-NotebookOptionsPosition[     24897,        649]
-NotebookOutlinePosition[     25254,        665]
-CellTagsIndexPosition[     25211,        662]
+NotebookDataLength[     35848,        928]
+NotebookOptionsPosition[     32085,        815]
+NotebookOutlinePosition[     32442,        831]
+CellTagsIndexPosition[     32399,        828]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -71,17 +71,63 @@ Cell[BoxData[{
    RowBox[{"public", " ", "aws", " ", "key"}], " ", 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"region", "=", "\"\<us-east-1\>\""}], ";", 
-   RowBox[{"service", "=", "\"\<ses\>\""}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"awsSendEmail", "[", 
-  RowBox[{"mysecret", ",", "myawskey", ",", 
-   RowBox[{"{", "\"\<scott.sproule@gmail.com\>\"", "}"}], ",", 
-   RowBox[{"{", "}"}], ",", 
-   RowBox[{"{", "}"}], ",", "\"\<final subject\>\"", " ", ",", 
-   "\"\<short contentes\>\""}], "]"}]}], "Input",
- CellChangeTimes->{{3.6563750985208683`*^9, 3.6563751260479*^9}}],
+  RowBox[{"region", "=", "\"\<us-east-1\>\""}], ";", 
+  RowBox[{"service", "=", "\"\<ses\>\""}], ";", "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "regions", " ", "not", " ", "used", " ", "below", " ", "but", " ", "the", 
+    " ", "routine", " ", "accepts"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.6563834441040707`*^9, 3.656383455695158*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"awsSendEmail", "[", 
+   RowBox[{"mysecret", ",", "myawskey", ",", 
+    RowBox[{"{", "\"\<scott.sproule@gmail.com\>\"", "}"}], ",", 
+    RowBox[{"{", "}"}], ",", 
+    RowBox[{"{", "}"}], ",", "\"\<final subject\>\"", " ", ",", 
+    "\"\<short contentes\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6563750985208683`*^9, 3.6563751260479*^9}, 
+   3.6563834390909967`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"ksigning: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"eb97bcf2f851c64055567e2a80e3162fd7f038ed92beef4763c3c248f2ec092d\"\>"}],
+  SequenceForm[
+  "ksigning: ", 
+   "eb97bcf2f851c64055567e2a80e3162fd7f038ed92beef4763c3c248f2ec092d"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.6563834597812147`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"signing string: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"AWS4-HMAC-SHA256\\n20151113T060419Z\\n20151113/us-east-1/ses/aws4_\
+request\\nc5d49cde2c756b2c4e71d3497617e359e57d95c0bed7d26957529d86a883da7a\"\>\
+"}],
+  SequenceForm[
+  "signing string: ", 
+   "AWS4-HMAC-SHA256\n20151113T060419Z\n20151113/us-east-1/ses/aws4_request\n\
+c5d49cde2c756b2c4e71d3497617e359e57d95c0bed7d26957529d86a883da7a"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.6563834597877913`*^9}]
+}, Open  ]],
+
+Cell[BoxData["\<\"<SendEmailResponse \
+xmlns=\\\"http://ses.amazonaws.com/doc/2010-12-01/\\\">\\n  <SendEmailResult>\
+\\n    <MessageId>00000150ff71d90c-7f463761-94fa-45b2-8af9-9c3a6f35bee5-\
+000000</MessageId>\\n  </SendEmailResult>\\n  <ResponseMetadata>\\n    \
+<RequestId>62aebaca-89cc-11e5-ae56-83f572044b4a</RequestId>\\n  \
+</ResponseMetadata>\\n</SendEmailResponse>\"\>"], "Output",
+ CellChangeTimes->{3.656383463341031*^9}]
+}, Open  ]],
 
 Cell["debugging add awsPrintDebug  eg //awsPrintDebug", "Program",
  CellChangeTimes->{{3.65637737237297*^9, 3.6563773881682587`*^9}}],
@@ -96,6 +142,126 @@ Cell[BoxData[
     "\"\<short contentes\>\""}], "]"}], " ", "//", "awsPrintDebug"}]], "Input",\
 
  CellChangeTimes->{{3.656377397525668*^9, 3.656377397898587*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Signing howto if you want to sign other sevices",
+ FontColor->RGBColor[1, 0, 0]]], "Subtitle",
+ CellChangeTimes->{{3.450428993449884*^9, 3.450429023131044*^9}, {
+   3.450429054460219*^9, 3.450429081092251*^9}, {3.450429336075108*^9, 
+   3.450429351122334*^9}, {3.450429721370988*^9, 3.450429798418885*^9}, {
+   3.450429894523477*^9, 3.4504299385909977`*^9}, 3.4504314290589027`*^9, 
+   3.450432361908763*^9, {3.469098131074913*^9, 3.46909813664746*^9}, {
+   3.469327495931891*^9, 3.469327497976513*^9}, {3.469327536577342*^9, 
+   3.469327546286818*^9}, 3.4693275916533813`*^9, {3.4811085720974903`*^9, 
+   3.481108584283414*^9}, {3.481803611335134*^9, 3.4818036262527847`*^9}, {
+   3.481837469523333*^9, 3.481837488268878*^9}, {3.509143221833988*^9, 
+   3.509143254378593*^9}, {3.509191824405025*^9, 3.509191833594602*^9}, {
+   3.553836738174595*^9, 3.5538367593477707`*^9}, {3.554461547882627*^9, 
+   3.554461552048469*^9}, {3.5590000317953863`*^9, 3.5590000461284*^9}, {
+   3.572106831912551*^9, 3.572106834975202*^9}, {3.572939165236642*^9, 
+   3.5729391862421513`*^9}, {3.5729393485111227`*^9, 3.572939360613221*^9}, {
+   3.575458206878522*^9, 3.575458222082818*^9}, {3.575463721758233*^9, 
+   3.575463731437603*^9}, {3.575887182536798*^9, 3.5758872028929987`*^9}, {
+   3.5765442154890623`*^9, 3.5765442314638367`*^9}, {3.583015095062594*^9, 
+   3.583015095857874*^9}, {3.583015132724308*^9, 3.583015142842434*^9}, {
+   3.590731220273827*^9, 3.5907312258955183`*^9}, {3.594356289862365*^9, 
+   3.594356321637085*^9}, {3.594356424418416*^9, 3.594356425392934*^9}, {
+   3.594356498015601*^9, 3.594356509333403*^9}, {3.616140063202622*^9, 
+   3.616140064433237*^9}, {3.640071527499979*^9, 3.640071532219411*^9}, {
+   3.64007309727192*^9, 3.6400731003751783`*^9}, {3.640772530750428*^9, 
+   3.64077253907304*^9}, {3.656375031573802*^9, 3.656375070854471*^9}, {
+   3.656383261329685*^9, 3.6563832689534607`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "see", " ", "the", " ", "code", " ", "and", " ", "amazaon", " ", 
+     "documentation", " ", "for", " ", "more", " ", "info"}], " ", "*)"}], 
+   RowBox[{
+    RowBox[{
+     RowBox[{"dateshort", "=", 
+      RowBox[{"StringJoin", "[", 
+       RowBox[{"ToString", "/@", 
+        RowBox[{
+         RowBox[{"DateList", "[", "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ";;", "3"}], "]"}], "]"}]}], "]"}]}], ";"}], "  ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"short", " ", "from", " ", "datea", " ", "20111212"}], " ", 
+     "*)"}], "\n", 
+    RowBox[{
+     RowBox[{"amzdate", "=", 
+      RowBox[{"StringJoin", "[", 
+       RowBox[{
+        RowBox[{"StringReplace", "[", 
+         RowBox[{
+          RowBox[{"DateString", "[", 
+           RowBox[{"\"\<ISODateTime\>\"", ",", 
+            RowBox[{"TimeZone", "->", "\"\<UTC\>\""}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"\"\<-\>\"", "->", "\"\<\>\""}], ",", 
+            RowBox[{"\"\<:\>\"", "->", "\"\<\>\""}]}], "}"}]}], "]"}], ",", 
+        "\"\<Z\>\""}], "]"}]}], ";"}], "  ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"funky", " ", "amazon", " ", "date", " ", "no", " ", "dash", " ", 
+      RowBox[{"no", " ", ":"}]}], " ", "*)"}], "\n", "\n", 
+    RowBox[{
+     RowBox[{"awssign", " ", "=", 
+      RowBox[{"getAWSSignature", "[", 
+       RowBox[{"mysecret", ",", "dateshort", ",", "region", ",", "service"}], 
+       "]"}]}], ";"}], " ", 
+    RowBox[{"(*", 
+     RowBox[{
+     "signing", " ", "key", " ", "a", " ", "mess", " ", "HMAC", " ", "SHA", 
+      " ", "algorithms"}], " ", "*)"}], " ", "\n", 
+    RowBox[{
+     RowBox[{"canonicalRequest", "=", 
+      RowBox[{"buildCanonicalRequest", "[", 
+       RowBox[{"body", ",", "amzdate", ",", "host"}], "]"}]}], ";"}], "\n", 
+    RowBox[{
+     RowBox[{"awsSignature", "=", 
+      RowBox[{"buildSignature", "[", 
+       RowBox[{"awssign", ",", 
+        RowBox[{"buildStringToSign", "[", 
+         RowBox[{
+         "canonicalRequest", ",", "amzdate", ",", "region", ",", "service"}], 
+         "]"}]}], "]"}]}], ";"}], "\n", 
+    RowBox[{
+     RowBox[{"awsDebugPrint", "[", "awsSignature", "]"}], ";"}], "  ", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "fill", " ", "in", " ", "the", " ", "headers", " ", "appropriate"}], " ",
+      "*)"}], " ", "\n", 
+    RowBox[{
+     RowBox[{"headers", "=", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+        "\"\<Content-Type\>\"", "->", 
+         "\"\<application/x-www-form-urlencoded\>\""}], ",", "\n", 
+        RowBox[{"\"\<Content-Length\>\"", " ", "->", " ", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"StringLength", "[", "body", "]"}], "]"}]}], ",", 
+        RowBox[{"\"\<Host\>\"", "->", "host"}], ",", 
+        RowBox[{"\"\<X-Amz-Date\>\"", "->", " ", "amzdate"}], ",", 
+        RowBox[{"\"\<Authorization\>\"", "->", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{
+          "\"\<AWS4-HMAC-SHA256 Credential=\>\"", ",", "myawskey", ",", 
+           "\"\</\>\"", ",", "dateshort", ",", "\"\</\>\"", ",", "region", 
+           ",", "\"\</\>\"", ",", "service", ",", 
+           "\"\</aws4_request, SignedHeaders=content-type;host;x-amz-date, \
+Signature=\>\"", ",", "awsSignature"}], "]"}]}]}], "}"}]}], ";"}], "\n", 
+    RowBox[{
+     RowBox[{"awsDebugPrint", "[", 
+      RowBox[{"\"\<headers: \>\"", ",", "headers"}], "]"}], ";"}], "\n", 
+    "headers"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656383325621442*^9, 3.656383403549527*^9}}]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -668,89 +834,101 @@ Cell[CellGroupData[{
 Cell[580, 22, 95, 1, 92, "Title"],
 Cell[678, 25, 1853, 25, 51, "Subtitle"],
 Cell[2534, 52, 194, 5, 46, "Input"],
-Cell[2731, 59, 930, 24, 114, "Input"],
-Cell[3664, 85, 133, 1, 46, "Program"],
-Cell[3800, 88, 409, 9, 46, "Input"],
+Cell[2731, 59, 765, 20, 80, "Input"],
 Cell[CellGroupData[{
-Cell[4234, 101, 2001, 30, 68, "Subtitle"],
-Cell[6238, 133, 166, 2, 28, "Input"],
-Cell[6407, 137, 144, 2, 28, "Input"],
+Cell[3521, 83, 453, 9, 80, "Input"],
 Cell[CellGroupData[{
-Cell[6576, 143, 163, 3, 28, "Input"],
-Cell[6742, 148, 152, 2, 28, "Output"]
+Cell[3999, 96, 349, 9, 22, "Print"],
+Cell[4351, 107, 516, 12, 70, "Print"]
+}, Open  ]],
+Cell[4882, 122, 432, 6, 165, "Output"]
+}, Open  ]],
+Cell[5329, 131, 133, 1, 46, "Program"],
+Cell[5465, 134, 409, 9, 46, "Input"],
+Cell[CellGroupData[{
+Cell[5899, 147, 1935, 26, 51, "Subtitle"],
+Cell[7837, 175, 3548, 87, 369, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6931, 155, 147, 2, 28, "Input"],
-Cell[7081, 159, 375, 9, 22, "Print"],
-Cell[7459, 170, 477, 7, 86, "Output"]
+Cell[11422, 267, 2001, 30, 68, "Subtitle"],
+Cell[13426, 299, 166, 2, 28, "Input"],
+Cell[13595, 303, 144, 2, 28, "Input"],
+Cell[CellGroupData[{
+Cell[13764, 309, 163, 3, 28, "Input"],
+Cell[13930, 314, 152, 2, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14119, 321, 147, 2, 28, "Input"],
+Cell[14269, 325, 375, 9, 22, "Print"],
+Cell[14647, 336, 477, 7, 28, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7997, 184, 95, 1, 92, "Title"],
-Cell[8095, 187, 117, 2, 28, "Input"],
-Cell[8215, 191, 431, 11, 46, "Input"],
-Cell[8649, 204, 388, 8, 46, "Input"],
-Cell[9040, 214, 461, 9, 46, "Input"],
-Cell[9504, 225, 239, 5, 28, "Input"],
-Cell[9746, 232, 295, 7, 28, "Input"],
-Cell[10044, 241, 129, 2, 28, "Input"],
-Cell[10176, 245, 387, 9, 46, "Input"],
-Cell[10566, 256, 271, 6, 80, "Input"],
-Cell[10840, 264, 160, 3, 28, "Input"],
-Cell[11003, 269, 172, 3, 28, "Input"],
-Cell[11178, 274, 221, 6, 28, "Input"],
-Cell[11402, 282, 259, 6, 28, "Input"],
-Cell[11664, 290, 285, 7, 28, "Input"],
-Cell[11952, 299, 291, 7, 63, "Input"],
-Cell[12246, 308, 62, 1, 28, "Input"],
-Cell[12311, 311, 219, 6, 28, "Input"],
-Cell[12533, 319, 132, 2, 28, "Input"],
-Cell[12668, 323, 125, 2, 28, "Input"],
-Cell[12796, 327, 109, 2, 28, "Input"],
-Cell[12908, 331, 128, 2, 28, "Input"],
-Cell[13039, 335, 382, 8, 28, "Input"],
-Cell[13424, 345, 412, 8, 46, "Input"],
-Cell[13839, 355, 453, 11, 46, "Input"],
-Cell[14295, 368, 452, 9, 46, "Input"],
-Cell[14750, 379, 117, 2, 28, "Input"],
-Cell[14870, 383, 310, 8, 28, "Input"],
-Cell[15183, 393, 176, 3, 28, "Input"],
-Cell[15362, 398, 236, 5, 46, "Input"],
-Cell[15601, 405, 533, 11, 28, "Input"],
-Cell[16137, 418, 94, 1, 28, "Input"],
-Cell[16234, 421, 134, 2, 28, "Input"],
-Cell[16371, 425, 386, 9, 28, "Input"],
-Cell[16760, 436, 772, 17, 63, "Input"],
-Cell[17535, 455, 172, 3, 28, "Input"],
-Cell[17710, 460, 103, 1, 28, "Input"],
-Cell[17816, 463, 362, 8, 28, "Input"],
-Cell[18181, 473, 136, 2, 28, "Input"],
-Cell[18320, 477, 574, 11, 63, "Input"],
-Cell[18897, 490, 248, 6, 28, "Input"],
-Cell[19148, 498, 96, 1, 28, "Input"],
-Cell[19247, 501, 103, 1, 28, "Input"],
-Cell[19353, 504, 187, 3, 28, "Input"],
-Cell[19543, 509, 221, 5, 28, "Input"],
-Cell[19767, 516, 873, 14, 28, "Input"],
-Cell[20643, 532, 437, 9, 28, "Input"],
-Cell[21083, 543, 122, 2, 28, "Input"],
-Cell[21208, 547, 743, 13, 28, "Input"],
-Cell[21954, 562, 325, 8, 28, "Input"],
-Cell[22282, 572, 164, 3, 28, "Input"],
-Cell[22449, 577, 180, 4, 28, "Input"],
-Cell[22632, 583, 136, 2, 28, "Input"],
-Cell[22771, 587, 142, 2, 28, "Input"],
-Cell[22916, 591, 134, 2, 28, "Input"],
-Cell[23053, 595, 99, 1, 28, "Input"],
-Cell[23155, 598, 124, 2, 28, "Input"],
-Cell[23282, 602, 252, 6, 28, "Input"],
-Cell[23537, 610, 340, 8, 28, "Input"],
-Cell[23880, 620, 251, 6, 28, "Input"],
-Cell[24134, 628, 156, 3, 28, "Input"],
-Cell[24293, 633, 269, 3, 31, "Input"],
-Cell[24565, 638, 159, 3, 28, "Input"],
-Cell[24727, 643, 154, 3, 28, "Input"]
+Cell[15185, 350, 95, 1, 92, "Title"],
+Cell[15283, 353, 117, 2, 28, "Input"],
+Cell[15403, 357, 431, 11, 46, "Input"],
+Cell[15837, 370, 388, 8, 46, "Input"],
+Cell[16228, 380, 461, 9, 46, "Input"],
+Cell[16692, 391, 239, 5, 28, "Input"],
+Cell[16934, 398, 295, 7, 28, "Input"],
+Cell[17232, 407, 129, 2, 28, "Input"],
+Cell[17364, 411, 387, 9, 46, "Input"],
+Cell[17754, 422, 271, 6, 80, "Input"],
+Cell[18028, 430, 160, 3, 28, "Input"],
+Cell[18191, 435, 172, 3, 28, "Input"],
+Cell[18366, 440, 221, 6, 28, "Input"],
+Cell[18590, 448, 259, 6, 28, "Input"],
+Cell[18852, 456, 285, 7, 28, "Input"],
+Cell[19140, 465, 291, 7, 63, "Input"],
+Cell[19434, 474, 62, 1, 28, "Input"],
+Cell[19499, 477, 219, 6, 28, "Input"],
+Cell[19721, 485, 132, 2, 28, "Input"],
+Cell[19856, 489, 125, 2, 28, "Input"],
+Cell[19984, 493, 109, 2, 28, "Input"],
+Cell[20096, 497, 128, 2, 28, "Input"],
+Cell[20227, 501, 382, 8, 28, "Input"],
+Cell[20612, 511, 412, 8, 46, "Input"],
+Cell[21027, 521, 453, 11, 46, "Input"],
+Cell[21483, 534, 452, 9, 46, "Input"],
+Cell[21938, 545, 117, 2, 28, "Input"],
+Cell[22058, 549, 310, 8, 28, "Input"],
+Cell[22371, 559, 176, 3, 28, "Input"],
+Cell[22550, 564, 236, 5, 46, "Input"],
+Cell[22789, 571, 533, 11, 28, "Input"],
+Cell[23325, 584, 94, 1, 28, "Input"],
+Cell[23422, 587, 134, 2, 28, "Input"],
+Cell[23559, 591, 386, 9, 28, "Input"],
+Cell[23948, 602, 772, 17, 63, "Input"],
+Cell[24723, 621, 172, 3, 28, "Input"],
+Cell[24898, 626, 103, 1, 28, "Input"],
+Cell[25004, 629, 362, 8, 28, "Input"],
+Cell[25369, 639, 136, 2, 28, "Input"],
+Cell[25508, 643, 574, 11, 63, "Input"],
+Cell[26085, 656, 248, 6, 28, "Input"],
+Cell[26336, 664, 96, 1, 28, "Input"],
+Cell[26435, 667, 103, 1, 28, "Input"],
+Cell[26541, 670, 187, 3, 28, "Input"],
+Cell[26731, 675, 221, 5, 28, "Input"],
+Cell[26955, 682, 873, 14, 28, "Input"],
+Cell[27831, 698, 437, 9, 28, "Input"],
+Cell[28271, 709, 122, 2, 28, "Input"],
+Cell[28396, 713, 743, 13, 28, "Input"],
+Cell[29142, 728, 325, 8, 28, "Input"],
+Cell[29470, 738, 164, 3, 28, "Input"],
+Cell[29637, 743, 180, 4, 28, "Input"],
+Cell[29820, 749, 136, 2, 28, "Input"],
+Cell[29959, 753, 142, 2, 28, "Input"],
+Cell[30104, 757, 134, 2, 28, "Input"],
+Cell[30241, 761, 99, 1, 28, "Input"],
+Cell[30343, 764, 124, 2, 28, "Input"],
+Cell[30470, 768, 252, 6, 28, "Input"],
+Cell[30725, 776, 340, 8, 28, "Input"],
+Cell[31068, 786, 251, 6, 28, "Input"],
+Cell[31322, 794, 156, 3, 28, "Input"],
+Cell[31481, 799, 269, 3, 31, "Input"],
+Cell[31753, 804, 159, 3, 28, "Input"],
+Cell[31915, 809, 154, 3, 28, "Input"]
 }, Open  ]]
 }
 ]
