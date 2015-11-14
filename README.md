@@ -1,10 +1,10 @@
 # aws
 
-This is an implementation of AWS4 signing  process.
+This integrates mathematica to AWS and is implemented in pure Mathematica.  This is an implementation of AWS4 signing  process.  This  allows accesss from Mathematica to Amazon Webservices (AWS).  Amazon simple email service is fully implemented and working.  Other implementations should be simple.
 
 It currently works to send Amazon SES emails from Mathematica.
 
-The awsSignHeaders utility can be used to sign any AWS call.
+The awsSignHeaders utility can be used to sign any AWS call. It has been tested on Macintosh and Raspberry PI.  On the PI, StringPadRight and StringRepeat were implemented as the version of Mathematic on this device does not support those two calls.
 
 
 ## Contact
