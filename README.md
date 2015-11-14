@@ -24,7 +24,7 @@ During evaluation of In[25]:= signing string: AWS4-HMAC-SHA256
 c5d49cde2c756b2c4e71d3497617e359e57d95c0bed7d26957529d86a883da7a
 
 ###Output
-<SendEmailResponse \ xmlns=\"http://ses.amazonaws.com/doc/2010-12-01/\"> <SendEmailResult>
-<MessageId>00000150ff71d90c-7f463761-94fa-45b2-8af9-9c3a6f35bee5-000000</MessageId>
-  </SendEmailResult>
-  <ResponseMetadata> <RequestId>62aebaca-89cc-11e5-ae56-83f572044b4a</RequestId> </ResponseMetadata> </SendEmailResponse>
+SendEmailResponse \ xmlns=\"http://ses.amazonaws.com/doc/2010-12-01/\" SendEmailResult
+MessageId 00000150ff71d90c-7f463761-94fa-45b2-8af9-9c3a6f35bee5-000000MessageId
+  /SendEmailResult
+  ResponseMetadata> <RequestId>62aebaca-89cc-11e5-ae56-83f572044b4a/RequestId /ResponseMetadata /SendEmailResponse

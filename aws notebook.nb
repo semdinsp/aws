@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     35848,        928]
-NotebookOptionsPosition[     32085,        815]
-NotebookOutlinePosition[     32442,        831]
-CellTagsIndexPosition[     32399,        828]
+NotebookDataLength[     42681,       1141]
+NotebookOptionsPosition[     37783,        990]
+NotebookOutlinePosition[     38140,       1006]
+CellTagsIndexPosition[     38097,       1003]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -71,8 +71,9 @@ Cell[BoxData[{
    RowBox[{"public", " ", "aws", " ", "key"}], " ", 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"region", "=", "\"\<us-east-1\>\""}], ";", 
-  RowBox[{"service", "=", "\"\<ses\>\""}], ";", "  ", 
+  RowBox[{
+   RowBox[{"region", "=", "\"\<us-east-1\>\""}], ";", 
+   RowBox[{"service", "=", "\"\<ses\>\""}], ";"}], "  ", 
   RowBox[{"(*", " ", 
    RowBox[{
    "regions", " ", "not", " ", "used", " ", "below", " ", "but", " ", "the", 
@@ -85,12 +86,12 @@ Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{"awsSendEmail", "[", 
    RowBox[{"mysecret", ",", "myawskey", ",", 
-    RowBox[{"{", "\"\<scott.sproule@gmail.com\>\"", "}"}], ",", 
+    RowBox[{"{", "\"\<scott@fred.com\>\"", "}"}], ",", 
     RowBox[{"{", "}"}], ",", 
     RowBox[{"{", "}"}], ",", "\"\<final subject\>\"", " ", ",", 
     "\"\<short contentes\>\""}], "]"}]}]], "Input",
  CellChangeTimes->{{3.6563750985208683`*^9, 3.6563751260479*^9}, 
-   3.6563834390909967`*^9}],
+   3.6563834390909967`*^9, {3.6563840395480413`*^9, 3.6563840429211273`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -136,16 +137,37 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"awsSendEmail", "[", 
    RowBox[{"mysecret", ",", "myawskey", ",", 
-    RowBox[{"{", "\"\<scott.sproule@gmail.com\>\"", "}"}], ",", 
+    RowBox[{"{", "\"\<scott@fred.com\>\"", "}"}], ",", 
     RowBox[{"{", "}"}], ",", 
     RowBox[{"{", "}"}], ",", "\"\<final subject\>\"", " ", ",", 
     "\"\<short contentes\>\""}], "]"}], " ", "//", "awsPrintDebug"}]], "Input",\
 
- CellChangeTimes->{{3.656377397525668*^9, 3.656377397898587*^9}}],
+ CellChangeTimes->{{3.656377397525668*^9, 3.656377397898587*^9}, {
+  3.656384051569565*^9, 3.65638405411364*^9}}],
+
+Cell["\<\
+send notebook via  html email  - a bit flaky due to mathematica being a bit \
+flaky.  note is a notebook\
+\>", "Program",
+ CellChangeTimes->{{3.656387653028639*^9, 3.656387672322164*^9}, {
+  3.65638770522729*^9, 3.656387720091935*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"awsSendEmail", "[", 
+   RowBox[{"mysecret", ",", "myawskey", ",", 
+    RowBox[{"{", "\"\<scott@fred.com\>\"", "}"}], ",", 
+    RowBox[{"{", "}"}], ",", 
+    RowBox[{"{", "}"}], ",", "\"\<final subject\>\"", " ", ",", 
+    RowBox[{"ExportString", "[", 
+     RowBox[{"note", ",", "\"\<HTML\>\""}], "]"}]}], "]"}], " ", "//", 
+  "awsPrintDebug"}]], "Input",
+ CellChangeTimes->{{3.656387683124043*^9, 3.656387701660771*^9}}],
 
 Cell[CellGroupData[{
 
-Cell[TextData[StyleBox["Signing howto if you want to sign other sevices",
+Cell[TextData[StyleBox["Signing howto:  if you want to sign other services \
+with AWS4 signature",
  FontColor->RGBColor[1, 0, 0]]], "Subtitle",
  CellChangeTimes->{{3.450428993449884*^9, 3.450429023131044*^9}, {
    3.450429054460219*^9, 3.450429081092251*^9}, {3.450429336075108*^9, 
@@ -171,7 +193,8 @@ Cell[TextData[StyleBox["Signing howto if you want to sign other sevices",
    3.616140064433237*^9}, {3.640071527499979*^9, 3.640071532219411*^9}, {
    3.64007309727192*^9, 3.6400731003751783`*^9}, {3.640772530750428*^9, 
    3.64077253907304*^9}, {3.656375031573802*^9, 3.656375070854471*^9}, {
-   3.656383261329685*^9, 3.6563832689534607`*^9}}],
+   3.656383261329685*^9, 3.6563832689534607`*^9}, {3.656470661778083*^9, 
+   3.656470671315701*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -194,31 +217,19 @@ Cell[BoxData[
      "*)"}], "\n", 
     RowBox[{
      RowBox[{"amzdate", "=", 
-      RowBox[{"StringJoin", "[", 
-       RowBox[{
-        RowBox[{"StringReplace", "[", 
-         RowBox[{
-          RowBox[{"DateString", "[", 
-           RowBox[{"\"\<ISODateTime\>\"", ",", 
-            RowBox[{"TimeZone", "->", "\"\<UTC\>\""}]}], "]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"\"\<-\>\"", "->", "\"\<\>\""}], ",", 
-            RowBox[{"\"\<:\>\"", "->", "\"\<\>\""}]}], "}"}]}], "]"}], ",", 
-        "\"\<Z\>\""}], "]"}]}], ";"}], "  ", 
-    RowBox[{"(*", " ", 
-     RowBox[{"funky", " ", "amazon", " ", "date", " ", "no", " ", "dash", " ", 
-      RowBox[{"no", " ", ":"}]}], " ", "*)"}], "\n", "\n", 
-    RowBox[{
+      RowBox[{"amazonFormattedDate", "[", "]"}]}], ";", "  ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "funky", " ", "amazon", " ", "date", " ", "no", " ", "dash", " ", 
+       RowBox[{"no", " ", ":"}]}], " ", "*)"}], "\n", "\n", 
      RowBox[{"awssign", " ", "=", 
       RowBox[{"getAWSSignature", "[", 
        RowBox[{"mysecret", ",", "dateshort", ",", "region", ",", "service"}], 
-       "]"}]}], ";"}], " ", 
-    RowBox[{"(*", 
-     RowBox[{
-     "signing", " ", "key", " ", "a", " ", "mess", " ", "HMAC", " ", "SHA", 
-      " ", "algorithms"}], " ", "*)"}], " ", "\n", 
-    RowBox[{
+       "]"}]}], ";", " ", 
+     RowBox[{"(*", 
+      RowBox[{
+      "signing", " ", "key", " ", "a", " ", "mess", " ", "HMAC", " ", "SHA", 
+       " ", "algorithms"}], " ", "*)"}], " ", "\n", 
      RowBox[{"canonicalRequest", "=", 
       RowBox[{"buildCanonicalRequest", "[", 
        RowBox[{"body", ",", "amzdate", ",", "host"}], "]"}]}], ";"}], "\n", 
@@ -229,9 +240,7 @@ Cell[BoxData[
         RowBox[{"buildStringToSign", "[", 
          RowBox[{
          "canonicalRequest", ",", "amzdate", ",", "region", ",", "service"}], 
-         "]"}]}], "]"}]}], ";"}], "\n", 
-    RowBox[{
-     RowBox[{"awsDebugPrint", "[", "awsSignature", "]"}], ";"}], "  ", 
+         "]"}]}], "]"}]}], ";"}], "\n", "  ", 
     RowBox[{"(*", " ", 
      RowBox[{
      "fill", " ", "in", " ", "the", " ", "headers", " ", "appropriate"}], " ",
@@ -255,12 +264,11 @@ Cell[BoxData[
            "\"\</\>\"", ",", "dateshort", ",", "\"\</\>\"", ",", "region", 
            ",", "\"\</\>\"", ",", "service", ",", 
            "\"\</aws4_request, SignedHeaders=content-type;host;x-amz-date, \
-Signature=\>\"", ",", "awsSignature"}], "]"}]}]}], "}"}]}], ";"}], "\n", 
-    RowBox[{
-     RowBox[{"awsDebugPrint", "[", 
-      RowBox[{"\"\<headers: \>\"", ",", "headers"}], "]"}], ";"}], "\n", 
-    "headers"}], "]"}], ";"}]], "Input",
- CellChangeTimes->{{3.656383325621442*^9, 3.656383403549527*^9}}]
+Signature=\>\"", ",", "awsSignature"}], "]"}]}]}], "}"}]}], ";"}], "\n", "\n",
+     "headers"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.656383325621442*^9, 3.656383403549527*^9}, {
+  3.656470688362791*^9, 3.656470694297073*^9}, {3.656470735369493*^9, 
+  3.656470741969715*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -313,9 +321,20 @@ Cell[BoxData[
   3.656220945139813*^9, {3.656374982132471*^9, 3.656374982507866*^9}}],
 
 Cell[BoxData["\<\"aws.wl\"\>"], "Output",
- CellChangeTimes->{3.656220945855648*^9, 3.65628162050804*^9, 
-  3.65637500900616*^9, 3.6563775737699947`*^9}]
+ CellChangeTimes->{
+  3.656220945855648*^9, 3.65628162050804*^9, 3.65637500900616*^9, 
+   3.6563775737699947`*^9, 3.656403821556448*^9, 3.656404092939939*^9, {
+   3.656405439457168*^9, 3.656405444938931*^9}, 3.656408374399094*^9, 
+   3.656472032505022*^9}]
 }, Open  ]],
+
+Cell[TextData[{
+ "this",
+ StyleBox[" just copies it to the appropriate directory... you can manually \
+copy it if needed to your directory for the Needs to work appropirate",
+  FontWeight->"Bold"]
+}], "Program",
+ CellChangeTimes->{{3.6564038309094276`*^9, 3.6564038575802097`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -325,14 +344,18 @@ Cell[BoxData[
 
 Cell[BoxData[
  InterpretationBox[
-  RowBox[{"\<\"Fri 13 Nov 2015 12:26:18\"\>", 
+  RowBox[{"\<\"Sat 14 Nov 2015 14:40:34\"\>", 
    "\[InvisibleSpace]", \
 "\<\"/Users/scott/Library/Mathematica/Applications/aws.wl\"\>"}],
   SequenceForm[
-  "Fri 13 Nov 2015 12:26:18", 
+  "Sat 14 Nov 2015 14:40:34", 
    "/Users/scott/Library/Mathematica/Applications/aws.wl"],
   Editable->False]], "Print",
- CellChangeTimes->{3.656375011341919*^9, 3.6563775782515087`*^9}],
+ CellChangeTimes->{
+  3.656375011341919*^9, 3.6563775782515087`*^9, 3.656403823773303*^9, 
+   3.656404095400181*^9, 3.656405450933539*^9, {3.656408380286515*^9, 
+   3.6564083879989862`*^9}, 3.656408661541637*^9, 3.6564566390484962`*^9, 
+   3.656456877252562*^9, 3.656472034951706*^9}],
 
 Cell[BoxData["\<\"/Users/scott/Library/Mathematica/Applications/aws.wl\"\>"], \
 "Output",
@@ -341,7 +364,10 @@ Cell[BoxData["\<\"/Users/scott/Library/Mathematica/Applications/aws.wl\"\>"], \
    3.656220875062851*^9, 3.6562208880235767`*^9}, 3.6562209480099287`*^9, 
    3.656221630415954*^9, 3.6562224607532873`*^9, 3.656279342802537*^9, 
    3.656281623081205*^9, {3.656375001388933*^9, 3.656375011350649*^9}, 
-   3.6563775782604837`*^9}]
+   3.6563775782604837`*^9, 3.656403823782363*^9, 3.656404095408729*^9, 
+   3.656405450942336*^9, {3.656408380300969*^9, 3.6564083880074472`*^9}, 
+   3.6564086615510387`*^9, 3.656456639058262*^9, 3.656456877261297*^9, 
+   3.656472034971933*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -350,6 +376,155 @@ Cell[CellGroupData[{
 
 Cell["Scratch Area", "Title",
  CellChangeTimes->{{3.656299997687601*^9, 3.656300009703352*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"amzdate", "=", 
+  RowBox[{"StringJoin", "[", 
+   RowBox[{
+    RowBox[{"StringReplace", "[", 
+     RowBox[{
+      RowBox[{"DateString", "[", 
+       RowBox[{"\"\<ISODateTime\>\"", ",", 
+        RowBox[{"TimeZone", "\[Rule]", "0"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<-\>\"", "->", "\"\<\>\""}], ",", 
+        RowBox[{"\"\<:\>\"", "->", "\"\<\>\""}]}], "}"}]}], "]"}], ",", 
+    "\"\<Z\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.656401962917042*^9, 3.656401979635828*^9}}],
+
+Cell[BoxData["\<\"20151113T111301Z\"\>"], "Output",
+ CellChangeTimes->{{3.6564019635010767`*^9, 3.656401981070092*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"$DateStringFormat", "=", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Year\>\"", ",", "\"\<Month\>\"", ",", "\"\<Day\>\"", ",", 
+        "\"\<T\>\"", ",", "\"\<Hour\>\"", ",", "\"\<Minute\>\"", ",", 
+        "\"\<Second\>\"", ",", "\"\<Z\>\""}], "}"}]}], "}"}], ",", 
+    RowBox[{"DateString", "[", 
+     RowBox[{"TimeZone", "\[Rule]", "0"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"amzDate", "[", "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"$DateStringFormat", "=", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Year\>\"", ",", "\"\<Month\>\"", ",", "\"\<Day\>\"", ",", 
+        "\"\<T\>\"", ",", "\"\<Hour\>\"", ",", "\"\<Minute\>\"", ",", 
+        "\"\<Second\>\"", ",", "\"\<Z\>\""}], "}"}]}], "}"}], ",", 
+    RowBox[{"DateString", "[", 
+     RowBox[{"TimeZone", "\[Rule]", "0"}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.656408115531247*^9, 3.656408175637538*^9}, {
+  3.6564082842418337`*^9, 3.6564082854696503`*^9}, {3.656408596183175*^9, 
+  3.656408621011189*^9}}],
+
+Cell[BoxData["\<\"20151113T130344Z\"\>"], "Output",
+ CellChangeTimes->{
+  3.6564081210149384`*^9, {3.656408168151799*^9, 3.656408176318686*^9}, 
+   3.656408287867312*^9, {3.656408604468556*^9, 3.6564086248221207`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"amzdate", "=", 
+  RowBox[{"amazonFormattedDate", "[", "]"}]}]], "Input",
+ CellChangeTimes->{{3.656470704569133*^9, 3.656470706792281*^9}}],
+
+Cell[BoxData["\<\"20151114T061827Z\"\>"], "Output",
+ CellChangeTimes->{3.656470707388421*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"awsBuildDestinationList", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\"\<a\>\"", ",", "\"\<b\>\""}], "}"}], ",", "\"\<fred.\>\""}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.656471317119678*^9, 3.656471337811314*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\<\"fred.1\"\>", "\[Rule]", "\<\"a\"\>"}], ",", 
+   RowBox[{"\<\"fred.2\"\>", "\[Rule]", "\<\"b\"\>"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.656471338981447*^9, 3.6564713883029222`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"char54", ",", "char92"}], "}"}], "=", 
+  RowBox[{"FromCharacterCode", "/@", 
+   RowBox[{"{", 
+    RowBox[{"54", ",", "92"}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.65640269288828*^9, 3.656402692893634*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"blockSize", "=", "64"}]], "Input",
+ CellChangeTimes->{{3.656402735329936*^9, 3.656402739298468*^9}}],
+
+Cell[BoxData["64"], "Output",
+ CellChangeTimes->{3.6564027445454693`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Head", "[", "char54", "]"}]], "Input",
+ CellChangeTimes->{{3.656402809542604*^9, 3.656402815884818*^9}}],
+
+Cell[BoxData["String"], "Output",
+ CellChangeTimes->{3.6564028164052134`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"ch0", "=", 
+  RowBox[{"FromCharacterCode", "@", "0"}]}]], "Input",
+ CellChangeTimes->{{3.656402955906272*^9, 3.6564029579775467`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\"\<\.00\>\"", "Table"}]], "Input",
+ CellChangeTimes->{{3.656403382431307*^9, 3.656403383061819*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Context", "[", "StringRepeat", "]"}]], "Input",
+ CellChangeTimes->{{3.656403227655395*^9, 3.6564032416494923`*^9}}],
+
+Cell[BoxData["\<\"System`\"\>"], "Output",
+ CellChangeTimes->{3.656403242185171*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Head", "[", "ch0", "]"}]], "Input",
+ CellChangeTimes->{{3.656402960160623*^9, 3.656402963249312*^9}}],
+
+Cell[BoxData["String"], "Output",
+ CellChangeTimes->{3.656402964216455*^9}]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"body", "="}]], "Input",
@@ -834,101 +1009,139 @@ Cell[CellGroupData[{
 Cell[580, 22, 95, 1, 92, "Title"],
 Cell[678, 25, 1853, 25, 51, "Subtitle"],
 Cell[2534, 52, 194, 5, 46, "Input"],
-Cell[2731, 59, 765, 20, 80, "Input"],
+Cell[2731, 59, 780, 21, 80, "Input"],
 Cell[CellGroupData[{
-Cell[3521, 83, 453, 9, 80, "Input"],
+Cell[3536, 84, 494, 9, 80, "Input"],
 Cell[CellGroupData[{
-Cell[3999, 96, 349, 9, 22, "Print"],
-Cell[4351, 107, 516, 12, 70, "Print"]
+Cell[4055, 97, 349, 9, 22, "Print"],
+Cell[4407, 108, 516, 12, 70, "Print"]
 }, Open  ]],
-Cell[4882, 122, 432, 6, 165, "Output"]
+Cell[4938, 123, 432, 6, 165, "Output"]
 }, Open  ]],
-Cell[5329, 131, 133, 1, 46, "Program"],
-Cell[5465, 134, 409, 9, 46, "Input"],
+Cell[5385, 132, 133, 1, 46, "Program"],
+Cell[5521, 135, 448, 10, 46, "Input"],
+Cell[5972, 147, 245, 5, 60, "Program"],
+Cell[6220, 154, 455, 10, 46, "Input"],
 Cell[CellGroupData[{
-Cell[5899, 147, 1935, 26, 51, "Subtitle"],
-Cell[7837, 175, 3548, 87, 369, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[11422, 267, 2001, 30, 68, "Subtitle"],
-Cell[13426, 299, 166, 2, 28, "Input"],
-Cell[13595, 303, 144, 2, 28, "Input"],
-Cell[CellGroupData[{
-Cell[13764, 309, 163, 3, 28, "Input"],
-Cell[13930, 314, 152, 2, 28, "Output"]
+Cell[6700, 168, 2010, 28, 51, "Subtitle"],
+Cell[8713, 198, 3010, 72, 352, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14119, 321, 147, 2, 28, "Input"],
-Cell[14269, 325, 375, 9, 22, "Print"],
-Cell[14647, 336, 477, 7, 28, "Output"]
+Cell[11760, 275, 2001, 30, 68, "Subtitle"],
+Cell[13764, 307, 166, 2, 28, "Input"],
+Cell[13933, 311, 144, 2, 28, "Input"],
+Cell[CellGroupData[{
+Cell[14102, 317, 163, 3, 28, "Input"],
+Cell[14268, 322, 298, 5, 28, "Output"]
+}, Open  ]],
+Cell[14581, 330, 281, 6, 60, "Program"],
+Cell[CellGroupData[{
+Cell[14887, 340, 147, 2, 28, "Input"],
+Cell[15037, 344, 594, 13, 22, "Print"],
+Cell[15634, 359, 693, 10, 86, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15185, 350, 95, 1, 92, "Title"],
-Cell[15283, 353, 117, 2, 28, "Input"],
-Cell[15403, 357, 431, 11, 46, "Input"],
-Cell[15837, 370, 388, 8, 46, "Input"],
-Cell[16228, 380, 461, 9, 46, "Input"],
-Cell[16692, 391, 239, 5, 28, "Input"],
-Cell[16934, 398, 295, 7, 28, "Input"],
-Cell[17232, 407, 129, 2, 28, "Input"],
-Cell[17364, 411, 387, 9, 46, "Input"],
-Cell[17754, 422, 271, 6, 80, "Input"],
-Cell[18028, 430, 160, 3, 28, "Input"],
-Cell[18191, 435, 172, 3, 28, "Input"],
-Cell[18366, 440, 221, 6, 28, "Input"],
-Cell[18590, 448, 259, 6, 28, "Input"],
-Cell[18852, 456, 285, 7, 28, "Input"],
-Cell[19140, 465, 291, 7, 63, "Input"],
-Cell[19434, 474, 62, 1, 28, "Input"],
-Cell[19499, 477, 219, 6, 28, "Input"],
-Cell[19721, 485, 132, 2, 28, "Input"],
-Cell[19856, 489, 125, 2, 28, "Input"],
-Cell[19984, 493, 109, 2, 28, "Input"],
-Cell[20096, 497, 128, 2, 28, "Input"],
-Cell[20227, 501, 382, 8, 28, "Input"],
-Cell[20612, 511, 412, 8, 46, "Input"],
-Cell[21027, 521, 453, 11, 46, "Input"],
-Cell[21483, 534, 452, 9, 46, "Input"],
-Cell[21938, 545, 117, 2, 28, "Input"],
-Cell[22058, 549, 310, 8, 28, "Input"],
-Cell[22371, 559, 176, 3, 28, "Input"],
-Cell[22550, 564, 236, 5, 46, "Input"],
-Cell[22789, 571, 533, 11, 28, "Input"],
-Cell[23325, 584, 94, 1, 28, "Input"],
-Cell[23422, 587, 134, 2, 28, "Input"],
-Cell[23559, 591, 386, 9, 28, "Input"],
-Cell[23948, 602, 772, 17, 63, "Input"],
-Cell[24723, 621, 172, 3, 28, "Input"],
-Cell[24898, 626, 103, 1, 28, "Input"],
-Cell[25004, 629, 362, 8, 28, "Input"],
-Cell[25369, 639, 136, 2, 28, "Input"],
-Cell[25508, 643, 574, 11, 63, "Input"],
-Cell[26085, 656, 248, 6, 28, "Input"],
-Cell[26336, 664, 96, 1, 28, "Input"],
-Cell[26435, 667, 103, 1, 28, "Input"],
-Cell[26541, 670, 187, 3, 28, "Input"],
-Cell[26731, 675, 221, 5, 28, "Input"],
-Cell[26955, 682, 873, 14, 28, "Input"],
-Cell[27831, 698, 437, 9, 28, "Input"],
-Cell[28271, 709, 122, 2, 28, "Input"],
-Cell[28396, 713, 743, 13, 28, "Input"],
-Cell[29142, 728, 325, 8, 28, "Input"],
-Cell[29470, 738, 164, 3, 28, "Input"],
-Cell[29637, 743, 180, 4, 28, "Input"],
-Cell[29820, 749, 136, 2, 28, "Input"],
-Cell[29959, 753, 142, 2, 28, "Input"],
-Cell[30104, 757, 134, 2, 28, "Input"],
-Cell[30241, 761, 99, 1, 28, "Input"],
-Cell[30343, 764, 124, 2, 28, "Input"],
-Cell[30470, 768, 252, 6, 28, "Input"],
-Cell[30725, 776, 340, 8, 28, "Input"],
-Cell[31068, 786, 251, 6, 28, "Input"],
-Cell[31322, 794, 156, 3, 28, "Input"],
-Cell[31481, 799, 269, 3, 31, "Input"],
-Cell[31753, 804, 159, 3, 28, "Input"],
-Cell[31915, 809, 154, 3, 28, "Input"]
+Cell[16388, 376, 95, 1, 92, "Title"],
+Cell[CellGroupData[{
+Cell[16508, 381, 537, 14, 63, "Input"],
+Cell[17048, 397, 119, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17204, 403, 1181, 30, 165, "Input"],
+Cell[18388, 435, 218, 3, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18643, 443, 162, 3, 28, "Input"],
+Cell[18808, 448, 93, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18938, 454, 245, 6, 28, "Input"],
+Cell[19186, 462, 241, 5, 28, "Output"]
+}, Open  ]],
+Cell[19442, 470, 262, 7, 28, "Input"],
+Cell[CellGroupData[{
+Cell[19729, 481, 124, 2, 28, "Input"],
+Cell[19856, 485, 73, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19966, 491, 128, 2, 28, "Input"],
+Cell[20097, 495, 77, 1, 28, "Output"]
+}, Open  ]],
+Cell[20189, 499, 158, 3, 28, "Input"],
+Cell[20350, 504, 125, 2, 28, "Input"],
+Cell[CellGroupData[{
+Cell[20500, 510, 139, 2, 28, "Input"],
+Cell[20642, 514, 84, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20763, 520, 125, 2, 28, "Input"],
+Cell[20891, 524, 75, 1, 28, "Output"]
+}, Open  ]],
+Cell[20981, 528, 117, 2, 28, "Input"],
+Cell[21101, 532, 431, 11, 46, "Input"],
+Cell[21535, 545, 388, 8, 46, "Input"],
+Cell[21926, 555, 461, 9, 46, "Input"],
+Cell[22390, 566, 239, 5, 28, "Input"],
+Cell[22632, 573, 295, 7, 28, "Input"],
+Cell[22930, 582, 129, 2, 28, "Input"],
+Cell[23062, 586, 387, 9, 46, "Input"],
+Cell[23452, 597, 271, 6, 80, "Input"],
+Cell[23726, 605, 160, 3, 28, "Input"],
+Cell[23889, 610, 172, 3, 28, "Input"],
+Cell[24064, 615, 221, 6, 28, "Input"],
+Cell[24288, 623, 259, 6, 28, "Input"],
+Cell[24550, 631, 285, 7, 28, "Input"],
+Cell[24838, 640, 291, 7, 63, "Input"],
+Cell[25132, 649, 62, 1, 28, "Input"],
+Cell[25197, 652, 219, 6, 28, "Input"],
+Cell[25419, 660, 132, 2, 28, "Input"],
+Cell[25554, 664, 125, 2, 28, "Input"],
+Cell[25682, 668, 109, 2, 28, "Input"],
+Cell[25794, 672, 128, 2, 28, "Input"],
+Cell[25925, 676, 382, 8, 28, "Input"],
+Cell[26310, 686, 412, 8, 46, "Input"],
+Cell[26725, 696, 453, 11, 46, "Input"],
+Cell[27181, 709, 452, 9, 46, "Input"],
+Cell[27636, 720, 117, 2, 28, "Input"],
+Cell[27756, 724, 310, 8, 28, "Input"],
+Cell[28069, 734, 176, 3, 28, "Input"],
+Cell[28248, 739, 236, 5, 46, "Input"],
+Cell[28487, 746, 533, 11, 28, "Input"],
+Cell[29023, 759, 94, 1, 28, "Input"],
+Cell[29120, 762, 134, 2, 28, "Input"],
+Cell[29257, 766, 386, 9, 28, "Input"],
+Cell[29646, 777, 772, 17, 63, "Input"],
+Cell[30421, 796, 172, 3, 28, "Input"],
+Cell[30596, 801, 103, 1, 28, "Input"],
+Cell[30702, 804, 362, 8, 28, "Input"],
+Cell[31067, 814, 136, 2, 28, "Input"],
+Cell[31206, 818, 574, 11, 63, "Input"],
+Cell[31783, 831, 248, 6, 28, "Input"],
+Cell[32034, 839, 96, 1, 28, "Input"],
+Cell[32133, 842, 103, 1, 28, "Input"],
+Cell[32239, 845, 187, 3, 28, "Input"],
+Cell[32429, 850, 221, 5, 28, "Input"],
+Cell[32653, 857, 873, 14, 28, "Input"],
+Cell[33529, 873, 437, 9, 28, "Input"],
+Cell[33969, 884, 122, 2, 28, "Input"],
+Cell[34094, 888, 743, 13, 28, "Input"],
+Cell[34840, 903, 325, 8, 28, "Input"],
+Cell[35168, 913, 164, 3, 28, "Input"],
+Cell[35335, 918, 180, 4, 28, "Input"],
+Cell[35518, 924, 136, 2, 28, "Input"],
+Cell[35657, 928, 142, 2, 28, "Input"],
+Cell[35802, 932, 134, 2, 28, "Input"],
+Cell[35939, 936, 99, 1, 28, "Input"],
+Cell[36041, 939, 124, 2, 28, "Input"],
+Cell[36168, 943, 252, 6, 28, "Input"],
+Cell[36423, 951, 340, 8, 28, "Input"],
+Cell[36766, 961, 251, 6, 28, "Input"],
+Cell[37020, 969, 156, 3, 28, "Input"],
+Cell[37179, 974, 269, 3, 31, "Input"],
+Cell[37451, 979, 159, 3, 28, "Input"],
+Cell[37613, 984, 154, 3, 28, "Input"]
 }, Open  ]]
 }
 ]
