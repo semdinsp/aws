@@ -8,6 +8,7 @@ BeginPackage["aws`"]
 (* Package used for aws signing functions *)
 (* Exported symbols added here with SymbolName::usage *) 
 amazonFormattedDate::usage="Date formated for amazon aws services signing";
+awsBuildDestinationList::usage="Build destination list of members for AWS: awsBuildDestinationList[token,list]";
 HMAC::usage= "SHA 256 algo for signing for AWS";
 awsStringPadRight::usage= "awsStringPadRight[char_String,size_Integer,pad_String] rasp pi StringPadRIght replacement SIGH";
 awsSignHeaders::usage= "Sign heanders for aws  AWS v4 signature";
@@ -33,7 +34,7 @@ Flatten[result]
 ];
 (* send email *)
 awsSendEmail[mysecret_String,myawskey_String,to_List,cc_List,bcc_List,subject_String,contents_,source_String: "scott.sproule@estormtech.com",region_String: "us-east-1"]:=Module[{service="ses",urlbody,body},
-body= <|"Action"->"SendEmail","Source"-> source,"Destination.ToAddresses.member.1" -> to[[1]] ,
+body= <|"Action"->"SendEmail","Source"-> source ,
 "Message.Subject.Data"->subject, "Message.Body.Html.Data" ->contents|>;
 If[Length[to]>0,body=Append[body,awsBuildDestinationList[to,"Destination.ToAddresses.member."  ]]];
 If[Length[cc]>0,body=Append[body,awsBuildDestinationList[cc,"Destination.CcAddresses.member."  ]]];
@@ -52,7 +53,7 @@ StringJoin[IntegerString[ToCharacterCode@awsHash[request],16,2]]
 
 buildStringToSign[hexpayload_,date_,region_,svc_]:=Module[{algo="AWS4-HMAC-SHA256",cred,sign,dateshort},
 cred=StringJoin["/",region,"/",svc,"/aws4_request"];
-dateshort=StringJoin[ToString/@DateList[][[1;;3]]];
+dateshort=StringTake[date,8];
 sign=StringJoin[algo,"\n",date,"\n",dateshort,cred,"\n",hexpayload];
 awsDebugPrint["signing string: ",sign];
 PrintTemporary["signing string: ",sign];
@@ -109,9 +110,9 @@ PrintTemporary["secure signature: ",StringJoin[IntegerString[ToCharacterCode@ksi
 
 awsSignHeaders[mysecret_String,myawskey_String,body_,region_String,service_String,
        host_String]:=Module[{amzdate,dateshort,headers,awssign,awsSignature,canonicalRequest},
-dateshort=StringJoin[ToString/@DateList[][[1;;3]]];
-amzdate=amazonFormattedDate[];
 
+amzdate=amazonFormattedDate[];
+dateshort=StringTake[amzdate,8];
 awssign =getAWSSignature[mysecret,dateshort,region,service];
 canonicalRequest=buildCanonicalRequest[body,amzdate,host];
 awsSignature=buildSignature[awssign,buildStringToSign[canonicalRequest,amzdate,region,service]];
@@ -125,6 +126,12 @@ headers];
 End[]
 
 EndPackage[];
+
+
+
+
+
+
 
 
 

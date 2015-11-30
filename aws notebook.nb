@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     42681,       1141]
-NotebookOptionsPosition[     37783,        990]
-NotebookOutlinePosition[     38140,       1006]
-CellTagsIndexPosition[     38097,       1003]
+NotebookDataLength[     58254,       1489]
+NotebookOptionsPosition[     53080,       1330]
+NotebookOutlinePosition[     53437,       1346]
+CellTagsIndexPosition[     53394,       1343]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -199,19 +199,19 @@ with AWS4 signature",
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"(*", " ", 
-    RowBox[{
-    "see", " ", "the", " ", "code", " ", "and", " ", "amazaon", " ", 
-     "documentation", " ", "for", " ", "more", " ", "info"}], " ", "*)"}], 
    RowBox[{
     RowBox[{
+     RowBox[{"Needs", "[", "\"\<aws`\>\"", "]"}], ";", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "see", " ", "the", " ", "code", " ", "and", " ", "amazaon", " ", 
+       "documentation", " ", "for", " ", "more", " ", "info"}], " ", "*)"}], 
      RowBox[{"dateshort", "=", 
-      RowBox[{"StringJoin", "[", 
-       RowBox[{"ToString", "/@", 
-        RowBox[{
-         RowBox[{"DateList", "[", "]"}], "[", 
-         RowBox[{"[", 
-          RowBox[{"1", ";;", "3"}], "]"}], "]"}]}], "]"}]}], ";"}], "  ", 
+      RowBox[{"StringTake", "[", 
+       RowBox[{
+        RowBox[{"amzdate", "=", 
+         RowBox[{"amazonFormattedDate", "[", "]"}]}], ",", "8"}], "]"}]}], 
+     ";"}], "\[IndentingNewLine]", 
     RowBox[{"(*", " ", 
      RowBox[{"short", " ", "from", " ", "datea", " ", "20111212"}], " ", 
      "*)"}], "\n", 
@@ -264,11 +264,23 @@ Cell[BoxData[
            "\"\</\>\"", ",", "dateshort", ",", "\"\</\>\"", ",", "region", 
            ",", "\"\</\>\"", ",", "service", ",", 
            "\"\</aws4_request, SignedHeaders=content-type;host;x-amz-date, \
-Signature=\>\"", ",", "awsSignature"}], "]"}]}]}], "}"}]}], ";"}], "\n", "\n",
-     "headers"}], "]"}], ";"}]], "Input",
+Signature=\>\"", ",", "awsSignature"}], "]"}]}]}], "}"}]}], ";"}], "\n", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{"post", " ", "to", " ", "corect", " ", "location"}], " ", "*)"}],
+     "\n", 
+    RowBox[{"URLFetch", "[", 
+     RowBox[{"urlname", ",", 
+      RowBox[{"\"\<Body\>\"", "->", "postbody"}], ",", 
+      RowBox[{"\"\<Headers\>\"", "->", "headers"}], ",", " ", 
+      RowBox[{"Method", "->", "\"\<POST\>\""}]}], "]"}]}], "]"}], 
+  ";"}]], "Input",
  CellChangeTimes->{{3.656383325621442*^9, 3.656383403549527*^9}, {
   3.656470688362791*^9, 3.656470694297073*^9}, {3.656470735369493*^9, 
-  3.656470741969715*^9}}]
+  3.656470741969715*^9}, {3.656660932050556*^9, 3.656660933100202*^9}, {
+  3.656660979718382*^9, 3.656660989377696*^9}, {3.656842589031294*^9, 
+  3.6568425982239933`*^9}, {3.657486730623563*^9, 3.65748674872617*^9}, {
+  3.657486780371642*^9, 3.657486781954794*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -325,7 +337,7 @@ Cell[BoxData["\<\"aws.wl\"\>"], "Output",
   3.656220945855648*^9, 3.65628162050804*^9, 3.65637500900616*^9, 
    3.6563775737699947`*^9, 3.656403821556448*^9, 3.656404092939939*^9, {
    3.656405439457168*^9, 3.656405444938931*^9}, 3.656408374399094*^9, 
-   3.656472032505022*^9}]
+   3.656472032505022*^9, 3.656790289395473*^9}]
 }, Open  ]],
 
 Cell[TextData[{
@@ -344,18 +356,14 @@ Cell[BoxData[
 
 Cell[BoxData[
  InterpretationBox[
-  RowBox[{"\<\"Sat 14 Nov 2015 14:40:34\"\>", 
+  RowBox[{"\<\"Wed 18 Nov 2015 07:06:56\"\>", 
    "\[InvisibleSpace]", \
 "\<\"/Users/scott/Library/Mathematica/Applications/aws.wl\"\>"}],
   SequenceForm[
-  "Sat 14 Nov 2015 14:40:34", 
+  "Wed 18 Nov 2015 07:06:56", 
    "/Users/scott/Library/Mathematica/Applications/aws.wl"],
   Editable->False]], "Print",
- CellChangeTimes->{
-  3.656375011341919*^9, 3.6563775782515087`*^9, 3.656403823773303*^9, 
-   3.656404095400181*^9, 3.656405450933539*^9, {3.656408380286515*^9, 
-   3.6564083879989862`*^9}, 3.656408661541637*^9, 3.6564566390484962`*^9, 
-   3.656456877252562*^9, 3.656472034951706*^9}],
+ CellChangeTimes->{3.6567903028066587`*^9, 3.656790416861794*^9}],
 
 Cell[BoxData["\<\"/Users/scott/Library/Mathematica/Applications/aws.wl\"\>"], \
 "Output",
@@ -367,7 +375,360 @@ Cell[BoxData["\<\"/Users/scott/Library/Mathematica/Applications/aws.wl\"\>"], \
    3.6563775782604837`*^9, 3.656403823782363*^9, 3.656404095408729*^9, 
    3.656405450942336*^9, {3.656408380300969*^9, 3.6564083880074472`*^9}, 
    3.6564086615510387`*^9, 3.656456639058262*^9, 3.656456877261297*^9, 
-   3.656472034971933*^9}]
+   3.656472034971933*^9, {3.656790291448064*^9, 3.656790302815939*^9}, 
+   3.656790416871148*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Test Area",
+ FontColor->RGBColor[1, 0, 0]]], "Subtitle",
+ CellChangeTimes->{{3.450428993449884*^9, 3.450429023131044*^9}, {
+   3.450429054460219*^9, 3.450429081092251*^9}, {3.450429336075108*^9, 
+   3.450429351122334*^9}, {3.450429721370988*^9, 3.450429798418885*^9}, {
+   3.450429894523477*^9, 3.4504299385909977`*^9}, 3.4504314290589027`*^9, 
+   3.450432361908763*^9, {3.469098131074913*^9, 3.46909813664746*^9}, {
+   3.469327495931891*^9, 3.469327497976513*^9}, {3.469327536577342*^9, 
+   3.469327546286818*^9}, 3.4693275916533813`*^9, {3.4811085720974903`*^9, 
+   3.481108584283414*^9}, {3.481803611335134*^9, 3.4818036262527847`*^9}, {
+   3.481837469523333*^9, 3.481837488268878*^9}, {3.509143221833988*^9, 
+   3.509143254378593*^9}, {3.509191824405025*^9, 3.509191833594602*^9}, {
+   3.553836738174595*^9, 3.5538367593477707`*^9}, {3.554461547882627*^9, 
+   3.554461552048469*^9}, {3.5590000317953863`*^9, 3.5590000461284*^9}, {
+   3.572106831912551*^9, 3.572106834975202*^9}, {3.572939165236642*^9, 
+   3.5729391862421513`*^9}, {3.5729393485111227`*^9, 3.572939360613221*^9}, {
+   3.575458206878522*^9, 3.575458222082818*^9}, {3.575463721758233*^9, 
+   3.575463731437603*^9}, {3.575887182536798*^9, 3.5758872028929987`*^9}, {
+   3.5765442154890623`*^9, 3.5765442314638367`*^9}, {3.583015095062594*^9, 
+   3.583015095857874*^9}, {3.583015132724308*^9, 3.583015142842434*^9}, {
+   3.590731220273827*^9, 3.5907312258955183`*^9}, {3.594356289862365*^9, 
+   3.594356321637085*^9}, {3.594356424418416*^9, 3.594356425392934*^9}, {
+   3.594356498015601*^9, 3.594356509333403*^9}, {3.616140063202622*^9, 
+   3.616140064433237*^9}, {3.6186464443142147`*^9, 3.61864646420641*^9}, {
+   3.639968843552431*^9, 3.639968889528368*^9}, {3.6426788819219217`*^9, 
+   3.642678882409073*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TestReport", "[", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<aws test.nb\>\""}], 
+    "}"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.642678927039365*^9, 3.642678957890609*^9}, {
+  3.6426789988645897`*^9, 3.6426790502912283`*^9}, {3.6567899211671124`*^9, 
+  3.656789922814349*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["TestReportObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False}, 
+    PanelBox[
+     PaneSelectorBox[{False->GridBox[{
+        {
+         PaneBox[
+          ButtonBox[
+           
+           DynamicBox[FEPrivate`FrontEndResource[
+            "FEBitmaps", "SquarePlusIconMedium"],
+            ImageSizeCache->{12., {0., 12.}}],
+           Appearance->None,
+           ButtonFunction:>(Typeset`open$$ = True),
+           Evaluator->Automatic,
+           Method->"Preemptive"],
+          Alignment->{Center, Center},
+          
+          ImageSize->
+           Dynamic[{
+            Automatic, 3.5 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+             Magnification]}]], 
+         GraphicsBox[InsetBox[
+           PaneBox[
+            
+            DynamicBox[FEPrivate`FrontEndResource[
+             "MUnitExpressions", "SuccessIcon"],
+             ImageSizeCache->{16., {4., 8.}}],
+            Alignment->Center,
+            
+            ImageSize->
+             Dynamic[{
+              Automatic, 3.5 CurrentValue["FontCapHeight"]/
+               AbsoluteCurrentValue[Magnification]}]]],
+          AspectRatio->1,
+          Axes->False,
+          Background->GrayLevel[0.93],
+          Frame->True,
+          FrameStyle->Directive[
+            Thickness[Tiny], 
+            GrayLevel[0.55]],
+          FrameTicks->None,
+          ImageSize->{Automatic, 
+            Dynamic[
+            3.5 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+             Magnification]]},
+          PlotRange->{{0, 1}, {0, 1}}], GridBox[{
+           {
+            RowBox[{
+             TagBox["\<\"Title: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["\<\"Test Report: aws test.nb\"\>",
+              "SummaryItem"]}], "\[SpanFromLeft]"},
+           {
+            RowBox[{
+             TagBox["\<\"Success rate: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox[
+              TemplateBox[{"100","\"%\""},
+               "RowDefault"],
+              "SummaryItem"]}], 
+            RowBox[{
+             TagBox["\<\"Tests run: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["9",
+              "SummaryItem"]}]}
+          },
+          AutoDelete->False,
+          
+          BaseStyle->{
+           ShowStringCharacters -> False, NumberMarks -> False, 
+            PrintPrecision -> 3, ShowSyntaxStyles -> False},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Automatic}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Rows" -> {{Top}}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True->
+      GridBox[{
+        {
+         PaneBox[
+          ButtonBox[
+           
+           DynamicBox[FEPrivate`FrontEndResource[
+            "FEBitmaps", "SquareMinusIconMedium"]],
+           Appearance->None,
+           ButtonFunction:>(Typeset`open$$ = False),
+           Evaluator->Automatic,
+           Method->"Preemptive"],
+          Alignment->{Center, Center},
+          
+          ImageSize->
+           Dynamic[{
+            Automatic, 3.5 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+             Magnification]}]], 
+         GraphicsBox[InsetBox[
+           PaneBox[
+            
+            DynamicBox[FEPrivate`FrontEndResource[
+             "MUnitExpressions", "SuccessIcon"]],
+            Alignment->Center,
+            
+            ImageSize->
+             Dynamic[{
+              Automatic, 3.5 CurrentValue["FontCapHeight"]/
+               AbsoluteCurrentValue[Magnification]}]]],
+          AspectRatio->1,
+          Axes->False,
+          Background->GrayLevel[0.93],
+          Frame->True,
+          FrameStyle->Directive[
+            Thickness[Tiny], 
+            GrayLevel[0.55]],
+          FrameTicks->None,
+          ImageSize->{Automatic, 
+            Dynamic[
+            3.5 CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+             Magnification]]},
+          PlotRange->{{0, 1}, {0, 1}}], GridBox[{
+           {
+            RowBox[{
+             TagBox["\<\"Title: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["\<\"Test Report: aws test.nb\"\>",
+              "SummaryItem"]}], "\[SpanFromLeft]"},
+           {
+            RowBox[{
+             TagBox["\<\"Success rate: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox[
+              TemplateBox[{"100","\"%\""},
+               "RowDefault"],
+              "SummaryItem"]}], 
+            RowBox[{
+             TagBox["\<\"Tests run: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["9",
+              "SummaryItem"]}]},
+           {
+            RowBox[{
+             TagBox["\<\"Succeeded: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["9",
+              "SummaryItem"]}], "\[SpanFromLeft]"},
+           {
+            RowBox[{
+             TagBox["\<\"Failed: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["0",
+              "SummaryItem"]}], "\[SpanFromLeft]"},
+           {
+            RowBox[{
+             TagBox["\<\"Failed with wrong results: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["0",
+              "SummaryItem"]}], "\[SpanFromLeft]"},
+           {
+            RowBox[{
+             TagBox["\<\"Failed with messages: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["0",
+              "SummaryItem"]}], "\[SpanFromLeft]"},
+           {
+            RowBox[{
+             TagBox["\<\"Failed with errors: \"\>",
+              "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+             TagBox["0",
+              "SummaryItem"]}], "\[SpanFromLeft]"}
+          },
+          AutoDelete->False,
+          
+          BaseStyle->{
+           ShowStringCharacters -> False, NumberMarks -> False, 
+            PrintPrecision -> 3, ShowSyntaxStyles -> False},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Automatic}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Rows" -> {{Top}}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, Dynamic[
+      Typeset`open$$],
+      ImageSize->Automatic],
+     BaselinePosition->Baseline],
+    DynamicModuleValues:>{}], "]"}],
+  TestReportObject[
+   Association[
+   "Title" -> "Test Report: aws test.nb", "TimeElapsed" -> 
+    Quantity[1.79, "Seconds"], "TestsSucceededCount" -> 9, "TestsFailedCount" -> 
+    0, "TestsFailedWrongResultsCount" -> 0, "TestsFailedWithMessagesCount" -> 
+    0, "TestsFailedWithErrorsCount" -> 0, "Aborted" -> False, "TestResults" -> 
+    Association[1 -> TestResultObject[
+        Association[
+        "TestIndex" -> 1, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[Needs["aws`"]; Head[
+             aws`amazonFormattedDate[]]], "ExpectedOutput" -> 
+         HoldForm[String], "ActualOutput" -> HoldForm[String], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000347`2.6908444726228677, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.0003439999998136045, "Seconds"], "MemoryUsed" -> 
+         Quantity[56, "Bytes"]]], 2 -> TestResultObject[
+        Association[
+        "TestIndex" -> 2, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[Needs["aws`"]; StringPosition[
+             aws`amazonFormattedDate[], "Z"]], "ExpectedOutput" -> 
+         HoldForm[{{16, 16}}], "ActualOutput" -> HoldForm[{{16, 16}}], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000291`2.6144079868179015, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.000289000000066153, "Seconds"], "MemoryUsed" -> 
+         Quantity[160, "Bytes"]]], 3 -> TestResultObject[
+        Association[
+        "TestIndex" -> 3, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[Needs["aws`"]; aws`awsBuildDestinationList[{"a"}, "fred."]],
+          "ExpectedOutput" -> HoldForm[{"fred.1" -> "a"}], "ActualOutput" -> 
+         HoldForm[{"fred.1" -> "a"}], "ExpectedMessages" -> {}, 
+         "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000094`2.1236428514316925, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.00009199999976772233, "Seconds"], "MemoryUsed" -> 
+         Quantity[200, "Bytes"]]], 4 -> TestResultObject[
+        Association[
+        "TestIndex" -> 4, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[Needs["aws`"]; aws`awsBuildDestinationList[{}, "fred2"]], 
+         "ExpectedOutput" -> HoldForm[{}], "ActualOutput" -> HoldForm[{}], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000081`2.0590000167106437, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.00008000000002539309, "Seconds"], "MemoryUsed" -> 
+         Quantity[56, "Bytes"]]], 5 -> TestResultObject[
+        Association[
+        "TestIndex" -> 5, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[
+          Needs["aws`"]; 
+           aws`awsBuildDestinationList[{
+             "c@gmail.com", "d@gmail.com", "c@gmail.com"}, 
+             "Destination.CcAddresses.member."]], "ExpectedOutput" -> 
+         HoldForm[{
+           "Destination.CcAddresses.member.1" -> "c@gmail.com", 
+            "Destination.CcAddresses.member.2" -> "d@gmail.com", 
+            "Destination.CcAddresses.member.3" -> "c@gmail.com"}], 
+         "ActualOutput" -> 
+         HoldForm[{
+           "Destination.CcAddresses.member.1" -> "c@gmail.com", 
+            "Destination.CcAddresses.member.2" -> "d@gmail.com", 
+            "Destination.CcAddresses.member.3" -> "c@gmail.com"}], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000098`2.1417410735244884, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.00009500000010120857, "Seconds"], "MemoryUsed" -> 
+         Quantity[504, "Bytes"]]], 6 -> TestResultObject[
+        Association[
+        "TestIndex" -> 6, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[
+          Needs["aws`"]; 
+           aws`awsStringRepeat["c", 33] == StringRepeat["c", 33]], 
+         "ExpectedOutput" -> HoldForm[True], "ActualOutput" -> HoldForm[True],
+          "ExpectedMessages" -> {}, "ActualMessages" -> {}, 
+         "AbsoluteTimeUsed" -> 
+         Quantity[0.000173`2.3885611009607897, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.0001700000000255386, "Seconds"], "MemoryUsed" -> 
+         Quantity[56, "Bytes"]]], 7 -> TestResultObject[
+        Association[
+        "TestIndex" -> 7, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[
+           aws`awsStringRepeat["c", 5]], "ExpectedOutput" -> 
+         HoldForm["ccccc"], "ActualOutput" -> HoldForm["ccccc"], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000092`2.114302825177549, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.00009000000000014552, "Seconds"], "MemoryUsed" -> 
+         Quantity[96, "Bytes"]]], 8 -> TestResultObject[
+        Association[
+        "TestIndex" -> 8, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[
+           aws`awsStringPadRight["c", 5, "b"]], "ExpectedOutput" -> 
+         HoldForm["cbbbb"], "ActualOutput" -> HoldForm["cbbbb"], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000088`2.0949976699821624, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.00008600000001024455, "Seconds"], "MemoryUsed" -> 
+         Quantity[96, "Bytes"]]], 9 -> TestResultObject[
+        Association[
+        "TestIndex" -> 9, "TestID" -> None, "Outcome" -> "Success", "Input" -> 
+         HoldForm[
+           aws`awsStringPadRight["ccccc", 5, "b"]], "ExpectedOutput" -> 
+         HoldForm["ccccc"], "ActualOutput" -> HoldForm["ccccc"], 
+         "ExpectedMessages" -> {}, "ActualMessages" -> {}, "AbsoluteTimeUsed" -> 
+         Quantity[0.000076`2.031328590112785, "Seconds"], "CPUTimeUsed" -> 
+         Quantity[0.00007499999992433004, "Seconds"], "MemoryUsed" -> 
+         Quantity[56, "Bytes"]]]], 
+    "TestsSucceededIndices" -> {1, 2, 3, 4, 5, 6, 7, 8, 9}, 
+    "TestsFailedIndices" -> {}, "TestsFailedWrongResultsIndices" -> {}, 
+    "TestsFailedWithMessagesIndices" -> {}, 
+    "TestsFailedWithErrorsIndices" -> {}]],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.6426790531473293`*^9, 3.642917059462862*^9, 
+  3.642918075904541*^9, 3.650313219278763*^9, 3.656790307133675*^9, 
+  3.6567904091420527`*^9, 3.657486372913883*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -396,42 +757,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.656401962917042*^9, 3.656401979635828*^9}}],
 
 Cell[BoxData["\<\"20151113T111301Z\"\>"], "Output",
- CellChangeTimes->{{3.6564019635010767`*^9, 3.656401981070092*^9}}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"Block", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"$DateStringFormat", "=", 
-      RowBox[{"{", 
-       RowBox[{
-       "\"\<Year\>\"", ",", "\"\<Month\>\"", ",", "\"\<Day\>\"", ",", 
-        "\"\<T\>\"", ",", "\"\<Hour\>\"", ",", "\"\<Minute\>\"", ",", 
-        "\"\<Second\>\"", ",", "\"\<Z\>\""}], "}"}]}], "}"}], ",", 
-    RowBox[{"DateString", "[", 
-     RowBox[{"TimeZone", "\[Rule]", "0"}], "]"}]}], "]"}], 
-  "\[IndentingNewLine]"}], "\n", 
- RowBox[{
-  RowBox[{"amzDate", "[", "]"}], ":=", 
-  RowBox[{"Block", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"$DateStringFormat", "=", 
-      RowBox[{"{", 
-       RowBox[{
-       "\"\<Year\>\"", ",", "\"\<Month\>\"", ",", "\"\<Day\>\"", ",", 
-        "\"\<T\>\"", ",", "\"\<Hour\>\"", ",", "\"\<Minute\>\"", ",", 
-        "\"\<Second\>\"", ",", "\"\<Z\>\""}], "}"}]}], "}"}], ",", 
-    RowBox[{"DateString", "[", 
-     RowBox[{"TimeZone", "\[Rule]", "0"}], "]"}]}], 
-   "]"}]}], "\[IndentingNewLine]"}], "Input",
- CellChangeTimes->{{3.656408115531247*^9, 3.656408175637538*^9}, {
-  3.6564082842418337`*^9, 3.6564082854696503`*^9}, {3.656408596183175*^9, 
-  3.656408621011189*^9}}],
+ CellChangeTimes->{{3.6564019635010767`*^9, 3.656401981070092*^9}}],
 
 Cell[BoxData["\<\"20151113T130344Z\"\>"], "Output",
  CellChangeTimes->{
@@ -442,12 +768,15 @@ Cell[BoxData["\<\"20151113T130344Z\"\>"], "Output",
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"amzdate", "=", 
-  RowBox[{"amazonFormattedDate", "[", "]"}]}]], "Input",
- CellChangeTimes->{{3.656470704569133*^9, 3.656470706792281*^9}}],
+ RowBox[{"StringTake", "[", 
+  RowBox[{
+   RowBox[{"amzdate", "=", 
+    RowBox[{"amazonFormattedDate", "[", "]"}]}], ",", "8"}], "]"}]], "Input",
+ CellChangeTimes->{{3.656470704569133*^9, 3.656470706792281*^9}, {
+  3.656790106677998*^9, 3.656790112932869*^9}}],
 
-Cell[BoxData["\<\"20151114T061827Z\"\>"], "Output",
- CellChangeTimes->{3.656470707388421*^9}]
+Cell[BoxData["\<\"20151117\"\>"], "Output",
+ CellChangeTimes->{3.656470707388421*^9, 3.6567901136679163`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -466,6 +795,17 @@ Cell[BoxData[
    RowBox[{"\<\"fred.1\"\>", "\[Rule]", "\<\"a\"\>"}], ",", 
    RowBox[{"\<\"fred.2\"\>", "\[Rule]", "\<\"b\"\>"}]}], "}"}]], "Output",
  CellChangeTimes->{3.656471338981447*^9, 3.6564713883029222`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"amazonFormattedDate", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.656789848751233*^9, 3.6567898488873587`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"amazonFormattedDate", "[", "]"}]], "Output",
+ CellChangeTimes->{3.6567900982732983`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -989,7 +1329,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{808, 619},
-WindowMargins->{{220, Automatic}, {43, Automatic}},
+WindowMargins->{{182, Automatic}, {40, Automatic}},
 FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 9, \
 2015)",
 StyleDefinitions->"Default.nb"
@@ -1024,124 +1364,132 @@ Cell[5972, 147, 245, 5, 60, "Program"],
 Cell[6220, 154, 455, 10, 46, "Input"],
 Cell[CellGroupData[{
 Cell[6700, 168, 2010, 28, 51, "Subtitle"],
-Cell[8713, 198, 3010, 72, 352, "Input"]
+Cell[8713, 198, 3663, 84, 403, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11760, 275, 2001, 30, 68, "Subtitle"],
-Cell[13764, 307, 166, 2, 28, "Input"],
-Cell[13933, 311, 144, 2, 28, "Input"],
+Cell[12413, 287, 2001, 30, 68, "Subtitle"],
+Cell[14417, 319, 166, 2, 28, "Input"],
+Cell[14586, 323, 144, 2, 28, "Input"],
 Cell[CellGroupData[{
-Cell[14102, 317, 163, 3, 28, "Input"],
-Cell[14268, 322, 298, 5, 28, "Output"]
+Cell[14755, 329, 163, 3, 28, "Input"],
+Cell[14921, 334, 320, 5, 28, "Output"]
 }, Open  ]],
-Cell[14581, 330, 281, 6, 60, "Program"],
+Cell[15256, 342, 281, 6, 60, "Program"],
 Cell[CellGroupData[{
-Cell[14887, 340, 147, 2, 28, "Input"],
-Cell[15037, 344, 594, 13, 22, "Print"],
-Cell[15634, 359, 693, 10, 86, "Output"]
+Cell[15562, 352, 147, 2, 28, "Input"],
+Cell[15712, 356, 375, 9, 22, "Print"],
+Cell[16090, 367, 765, 11, 28, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16904, 384, 1802, 25, 51, "Subtitle"],
+Cell[CellGroupData[{
+Cell[18731, 413, 386, 9, 28, "Input"],
+Cell[19120, 424, 13307, 306, 63, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16388, 376, 95, 1, 92, "Title"],
+Cell[32488, 737, 95, 1, 92, "Title"],
 Cell[CellGroupData[{
-Cell[16508, 381, 537, 14, 63, "Input"],
-Cell[17048, 397, 119, 1, 28, "Output"]
+Cell[32608, 742, 537, 14, 63, "Input"],
+Cell[33148, 758, 119, 1, 28, "Output"],
+Cell[33270, 761, 218, 3, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17204, 403, 1181, 30, 165, "Input"],
-Cell[18388, 435, 218, 3, 28, "Output"]
+Cell[33525, 769, 274, 6, 28, "Input"],
+Cell[33802, 777, 109, 1, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18643, 443, 162, 3, 28, "Input"],
-Cell[18808, 448, 93, 1, 28, "Output"]
+Cell[33948, 783, 245, 6, 28, "Input"],
+Cell[34196, 791, 241, 5, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18938, 454, 245, 6, 28, "Input"],
-Cell[19186, 462, 241, 5, 28, "Output"]
+Cell[34474, 801, 135, 2, 28, "Input"],
+Cell[34612, 805, 112, 2, 28, "Output"]
 }, Open  ]],
-Cell[19442, 470, 262, 7, 28, "Input"],
+Cell[34739, 810, 262, 7, 28, "Input"],
 Cell[CellGroupData[{
-Cell[19729, 481, 124, 2, 28, "Input"],
-Cell[19856, 485, 73, 1, 28, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[19966, 491, 128, 2, 28, "Input"],
-Cell[20097, 495, 77, 1, 28, "Output"]
-}, Open  ]],
-Cell[20189, 499, 158, 3, 28, "Input"],
-Cell[20350, 504, 125, 2, 28, "Input"],
-Cell[CellGroupData[{
-Cell[20500, 510, 139, 2, 28, "Input"],
-Cell[20642, 514, 84, 1, 28, "Output"]
+Cell[35026, 821, 124, 2, 28, "Input"],
+Cell[35153, 825, 73, 1, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20763, 520, 125, 2, 28, "Input"],
-Cell[20891, 524, 75, 1, 28, "Output"]
+Cell[35263, 831, 128, 2, 28, "Input"],
+Cell[35394, 835, 77, 1, 28, "Output"]
 }, Open  ]],
-Cell[20981, 528, 117, 2, 28, "Input"],
-Cell[21101, 532, 431, 11, 46, "Input"],
-Cell[21535, 545, 388, 8, 46, "Input"],
-Cell[21926, 555, 461, 9, 46, "Input"],
-Cell[22390, 566, 239, 5, 28, "Input"],
-Cell[22632, 573, 295, 7, 28, "Input"],
-Cell[22930, 582, 129, 2, 28, "Input"],
-Cell[23062, 586, 387, 9, 46, "Input"],
-Cell[23452, 597, 271, 6, 80, "Input"],
-Cell[23726, 605, 160, 3, 28, "Input"],
-Cell[23889, 610, 172, 3, 28, "Input"],
-Cell[24064, 615, 221, 6, 28, "Input"],
-Cell[24288, 623, 259, 6, 28, "Input"],
-Cell[24550, 631, 285, 7, 28, "Input"],
-Cell[24838, 640, 291, 7, 63, "Input"],
-Cell[25132, 649, 62, 1, 28, "Input"],
-Cell[25197, 652, 219, 6, 28, "Input"],
-Cell[25419, 660, 132, 2, 28, "Input"],
-Cell[25554, 664, 125, 2, 28, "Input"],
-Cell[25682, 668, 109, 2, 28, "Input"],
-Cell[25794, 672, 128, 2, 28, "Input"],
-Cell[25925, 676, 382, 8, 28, "Input"],
-Cell[26310, 686, 412, 8, 46, "Input"],
-Cell[26725, 696, 453, 11, 46, "Input"],
-Cell[27181, 709, 452, 9, 46, "Input"],
-Cell[27636, 720, 117, 2, 28, "Input"],
-Cell[27756, 724, 310, 8, 28, "Input"],
-Cell[28069, 734, 176, 3, 28, "Input"],
-Cell[28248, 739, 236, 5, 46, "Input"],
-Cell[28487, 746, 533, 11, 28, "Input"],
-Cell[29023, 759, 94, 1, 28, "Input"],
-Cell[29120, 762, 134, 2, 28, "Input"],
-Cell[29257, 766, 386, 9, 28, "Input"],
-Cell[29646, 777, 772, 17, 63, "Input"],
-Cell[30421, 796, 172, 3, 28, "Input"],
-Cell[30596, 801, 103, 1, 28, "Input"],
-Cell[30702, 804, 362, 8, 28, "Input"],
-Cell[31067, 814, 136, 2, 28, "Input"],
-Cell[31206, 818, 574, 11, 63, "Input"],
-Cell[31783, 831, 248, 6, 28, "Input"],
-Cell[32034, 839, 96, 1, 28, "Input"],
-Cell[32133, 842, 103, 1, 28, "Input"],
-Cell[32239, 845, 187, 3, 28, "Input"],
-Cell[32429, 850, 221, 5, 28, "Input"],
-Cell[32653, 857, 873, 14, 28, "Input"],
-Cell[33529, 873, 437, 9, 28, "Input"],
-Cell[33969, 884, 122, 2, 28, "Input"],
-Cell[34094, 888, 743, 13, 28, "Input"],
-Cell[34840, 903, 325, 8, 28, "Input"],
-Cell[35168, 913, 164, 3, 28, "Input"],
-Cell[35335, 918, 180, 4, 28, "Input"],
-Cell[35518, 924, 136, 2, 28, "Input"],
-Cell[35657, 928, 142, 2, 28, "Input"],
-Cell[35802, 932, 134, 2, 28, "Input"],
-Cell[35939, 936, 99, 1, 28, "Input"],
-Cell[36041, 939, 124, 2, 28, "Input"],
-Cell[36168, 943, 252, 6, 28, "Input"],
-Cell[36423, 951, 340, 8, 28, "Input"],
-Cell[36766, 961, 251, 6, 28, "Input"],
-Cell[37020, 969, 156, 3, 28, "Input"],
-Cell[37179, 974, 269, 3, 31, "Input"],
-Cell[37451, 979, 159, 3, 28, "Input"],
-Cell[37613, 984, 154, 3, 28, "Input"]
+Cell[35486, 839, 158, 3, 28, "Input"],
+Cell[35647, 844, 125, 2, 28, "Input"],
+Cell[CellGroupData[{
+Cell[35797, 850, 139, 2, 28, "Input"],
+Cell[35939, 854, 84, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36060, 860, 125, 2, 28, "Input"],
+Cell[36188, 864, 75, 1, 28, "Output"]
+}, Open  ]],
+Cell[36278, 868, 117, 2, 28, "Input"],
+Cell[36398, 872, 431, 11, 46, "Input"],
+Cell[36832, 885, 388, 8, 46, "Input"],
+Cell[37223, 895, 461, 9, 46, "Input"],
+Cell[37687, 906, 239, 5, 28, "Input"],
+Cell[37929, 913, 295, 7, 28, "Input"],
+Cell[38227, 922, 129, 2, 28, "Input"],
+Cell[38359, 926, 387, 9, 46, "Input"],
+Cell[38749, 937, 271, 6, 80, "Input"],
+Cell[39023, 945, 160, 3, 28, "Input"],
+Cell[39186, 950, 172, 3, 28, "Input"],
+Cell[39361, 955, 221, 6, 28, "Input"],
+Cell[39585, 963, 259, 6, 28, "Input"],
+Cell[39847, 971, 285, 7, 28, "Input"],
+Cell[40135, 980, 291, 7, 63, "Input"],
+Cell[40429, 989, 62, 1, 28, "Input"],
+Cell[40494, 992, 219, 6, 28, "Input"],
+Cell[40716, 1000, 132, 2, 28, "Input"],
+Cell[40851, 1004, 125, 2, 28, "Input"],
+Cell[40979, 1008, 109, 2, 28, "Input"],
+Cell[41091, 1012, 128, 2, 28, "Input"],
+Cell[41222, 1016, 382, 8, 28, "Input"],
+Cell[41607, 1026, 412, 8, 46, "Input"],
+Cell[42022, 1036, 453, 11, 46, "Input"],
+Cell[42478, 1049, 452, 9, 46, "Input"],
+Cell[42933, 1060, 117, 2, 28, "Input"],
+Cell[43053, 1064, 310, 8, 28, "Input"],
+Cell[43366, 1074, 176, 3, 28, "Input"],
+Cell[43545, 1079, 236, 5, 46, "Input"],
+Cell[43784, 1086, 533, 11, 28, "Input"],
+Cell[44320, 1099, 94, 1, 28, "Input"],
+Cell[44417, 1102, 134, 2, 28, "Input"],
+Cell[44554, 1106, 386, 9, 28, "Input"],
+Cell[44943, 1117, 772, 17, 63, "Input"],
+Cell[45718, 1136, 172, 3, 28, "Input"],
+Cell[45893, 1141, 103, 1, 28, "Input"],
+Cell[45999, 1144, 362, 8, 28, "Input"],
+Cell[46364, 1154, 136, 2, 28, "Input"],
+Cell[46503, 1158, 574, 11, 63, "Input"],
+Cell[47080, 1171, 248, 6, 28, "Input"],
+Cell[47331, 1179, 96, 1, 28, "Input"],
+Cell[47430, 1182, 103, 1, 28, "Input"],
+Cell[47536, 1185, 187, 3, 28, "Input"],
+Cell[47726, 1190, 221, 5, 28, "Input"],
+Cell[47950, 1197, 873, 14, 28, "Input"],
+Cell[48826, 1213, 437, 9, 28, "Input"],
+Cell[49266, 1224, 122, 2, 28, "Input"],
+Cell[49391, 1228, 743, 13, 28, "Input"],
+Cell[50137, 1243, 325, 8, 28, "Input"],
+Cell[50465, 1253, 164, 3, 28, "Input"],
+Cell[50632, 1258, 180, 4, 28, "Input"],
+Cell[50815, 1264, 136, 2, 28, "Input"],
+Cell[50954, 1268, 142, 2, 28, "Input"],
+Cell[51099, 1272, 134, 2, 28, "Input"],
+Cell[51236, 1276, 99, 1, 28, "Input"],
+Cell[51338, 1279, 124, 2, 28, "Input"],
+Cell[51465, 1283, 252, 6, 28, "Input"],
+Cell[51720, 1291, 340, 8, 28, "Input"],
+Cell[52063, 1301, 251, 6, 28, "Input"],
+Cell[52317, 1309, 156, 3, 28, "Input"],
+Cell[52476, 1314, 269, 3, 31, "Input"],
+Cell[52748, 1319, 159, 3, 28, "Input"],
+Cell[52910, 1324, 154, 3, 28, "Input"]
 }, Open  ]]
 }
 ]
