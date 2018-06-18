@@ -4,7 +4,9 @@ This integrates mathematica to AWS and is implemented in pure Mathematica.  This
 
 It currently works to send Amazon SES emails from Mathematica.
 
-The awsSignHeaders utility can be used to sign any AWS call. It has been tested on Macintosh and Raspberry PI.  On the PI, StringPadRight and StringRepeat were implemented as the version of Mathematic on this device does not support those two calls.
+Mathematica 11.3 added  a new HMAC function.  I, of course, upgraded my software to support this.  And painfully changed a lot of details so it started to fail on 11.2.  A separate files awsold.wl support 11.2 and raspberry pi nativelly.  Just rename this file to aws.wl if you want to use it.
+
+The awsSignHeaders utility can be used to sign any AWS call. It has been tested on Macintosh and Raspberry PI.  On the PI, StringPadRight and StringRepeat were implemented as the version of Mathematic on this device does not support those two calls.  The files need to be installed  the applications director of mathematica or they should be 'run' locally. Installing in the applications directory and then Needs["aws`"] is the best way.  On my mac, this folder is '/Users/xxxx/Library/Mathematica/Applications/' and on a raspberry pi is is '/home/pi/.WolframEngine/Applications/'
 
 
 ## Contact
