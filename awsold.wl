@@ -1,6 +1,7 @@
 (* ::Package:: *)
 
 (* Mathematica Package *)
+(* THIS SUPPORTS 11.2 and younger version of mathematica on raspberry pi *)
 
 BeginPackage["aws`"]
 (* Copyright 2015 Ficonab Pte Ltd *)
@@ -8,7 +9,6 @@ BeginPackage["aws`"]
 (* Package used for aws signing functions *)
 (* Exported symbols added here with SymbolName::usage *) 
 amazonFormattedDate::usage="Date formated for amazon aws services signing";
-awsHash::usage="amazon hash functin internal ";
 awsBuildDestinationList::usage="Build destination list of members for AWS: awsBuildDestinationList[token,list]";
 HMAC::usage= "SHA 256 algo for signing for AWS";
 awsStringPadRight::usage= "awsStringPadRight[char_String,size_Integer,pad_String] rasp pi StringPadRIght replacement SIGH";
@@ -17,28 +17,16 @@ awsSignAndSend::usage= " sign AWS v4 signature awsSignAndSend[mysecret_String,my
 awsSendEmail::usage= "send email via AWS SES awsSendEmail[mysecret_String,myawskey_String,to_List,cc_List,bcc_List,subject_String,contents_,source_String: region_String: ]";
 awsPrintDebug::usage="print debug statement flag: eg monitorPosition  //awsPrintDebug";
 awsStringRepeat::usage=" replacement of StringRepeat awsStringRepeat[char_String,size_Integer]as not available on pi";
-getAWSSignature::usage="generate AWS4 signing elements";
-awsHexStringtoByteArray::usage="compute hexarray from byte string";
 Begin["`Private`"]
 
 Attributes[awsPrintDebug]={HoldAll};
 awsPrintDebug[expr_] := Block[{awsDebugPrint = Print}, expr];
 (* sign AWS 4 signature and post to amazaon *)
 awsSignAndSend[mysecret_String,myawskey_String,postbody_,region_String: "us-east-1",
-    service_String: "ses",host_String: "email.us-east-1.amazonaws.com"]:=Module[{amzdate,dateshort,
-    requestAssoc,headers,urlname},
-headers=awsSignHeaders[mysecret,myawskey,postbody,region,service,host];
-urlname=StringJoin["https://",host,"/"];
-requestAssoc=<|"Body"-> postbody, "Method"->"POST","Headers"->headers|>;
-URLExecute[HTTPRequest[urlname, requestAssoc]]
-];
-
-awsSignAndSendOld[mysecret_String,myawskey_String,postbody_,region_String: "us-east-1",
     service_String: "ses",host_String: "email.us-east-1.amazonaws.com"]:=Module[{amzdate,dateshort,headers,urlname},
 headers=awsSignHeaders[mysecret,myawskey,postbody,region,service,host];
 urlname=StringJoin["https://",host,"/"];
 URLFetch[urlname,"Body"->postbody,"Headers"->headers, Method->"POST"]];
-
 (* build address list*)
 awsBuildDestinationList[addresses_List,token_String]:=Module[{count,result},
 count=Length[addresses];
@@ -74,12 +62,7 @@ sign];
 
 amazonFormattedDate[]:=Block[{$DateStringFormat={"Year","Month","Day","T","Hour","Minute","Second","Z"}},DateString[TimeZone->0]];
 
-buildSignature[signkey_,stringToSign_]:=Module[{sig},
-sig=HMAC[awsHexStringtoByteArray[signkey],stringToSign];
-sig
-];
-
-buildSignature112[signkey_,stringToSign_]:=Module[{sig},sig=HMAC[signkey,stringToSign];
+buildSignature[signkey_,stringToSign_]:=Module[{sig},sig=HMAC[signkey,stringToSign];
 StringJoin[IntegerString[ToCharacterCode@sig,16,2]]
 ];
 
@@ -104,7 +87,7 @@ ipad=FromCharacterCode[BitXor@@Map[ToCharacterCode,{StringRepeat[char54,blockSiz
 opad=FromCharacterCode[BitXor@@Map[ToCharacterCode,{StringRepeat[char92,blockSize],key2}]];
 awsHash@StringJoin[opad,awsHash@StringJoin[ipad,message]]];
 
-HMACv112[key_String,message_String,method_String:"SHA256",blockSize_Integer:64]:=Module[{char54,char92,key2,ipad,opad},
+HMAC[key_String,message_String,method_String:"SHA256",blockSize_Integer:64]:=Module[{char54,char92,key2,ipad,opad},
 (* borrowed from http://mathematica.stackexchange.com/questions/94891/hmac-implementation-in-pure-mathematica  *)
 {char54,char92}=FromCharacterCode/@{54,92};
 key2=Switch[StringLength@key,blockSize,key,l_/;l>blockSize,awsHash[key,method],_,awsStringPadRight[key,blockSize,FromCharacterCode@0]];
@@ -112,57 +95,18 @@ ipad=FromCharacterCode[BitXor@@Map[ToCharacterCode,{awsStringRepeat[char54,block
 opad=FromCharacterCode[BitXor@@Map[ToCharacterCode,{awsStringRepeat[char92,blockSize],key2}]];
 awsHash@StringJoin[opad,awsHash@StringJoin[ipad,message]]];
 
-HMACOrig113[key_,message_,method_String: "SHA256"]:=Module[{dkey, opad, ipad, blocksize}, 
-  blocksize = If[method === "SHA384" || method === "SHA512", 128, 64];
-  dkey = StringToByteArray[key];
-  If[Length[dkey] > blocksize, dkey = Hash[dkey, method, "ByteArray"]];
-  dkey = Normal[dkey];
-  If[Length[dkey] < blocksize, dkey = PadRight[dkey, blocksize, 0]];
-  {opad, ipad} = ByteArray[BitXor[dkey, ConstantArray[#, blocksize]]] & /@ {92, 54};
-  Hash[Join[opad, Hash[Join[ipad, StringToByteArray[message]], method, "ByteArray"]],method,"HexString"]
-];
-HMAC[bkey_ByteArray,message_,method_String: "SHA256"]:=Module[{ opad, ipad, blocksize,key}, 
-  blocksize = If[method === "SHA384" || method === "SHA512", 128, 64];
-  key=bkey;
-  If[Length[key] > blocksize, key = Hash[Normal[bkey], method, "ByteArray"]];
-  key = Normal[key];
-  If[Length[key] < blocksize, key = PadRight[key, blocksize, 0]];
-  {opad, ipad} = ByteArray[BitXor[key, ConstantArray[#, blocksize]]] & /@ {92, 54};
-  Hash[Join[opad, Hash[Join[ipad, StringToByteArray[message]], method, "ByteArray"]],method,"HexString"]
-];
-
-awsHexStringtoByteArray[str_String]:=Module[{},
-ByteArray[IntegerDigits[FromDigits[str,16],256,StringLength[str]/2]]
-];
-
-getAWSSignatureOPrig[key_,dateStamp_,regionName_,serviceName_]:=Module[{kdate,kregion,kservice,ksigning,keysecret,keystring},
-keystring=StringJoin["AWS4",key];
-awsDebugPrint["keystring: ",keystring];
-kdate=HMAC[keystring,dateStamp];   (* StringJoin[IntegerString[ToCharacterCode@kdate,16,2]] *)
-awsDebugPrint["kdate: ", kdate];
-kregion=HMAC[kdate,regionName];
-awsDebugPrint["kregion: ",kregion];
-kservice=HMAC[kregion,serviceName];
-awsDebugPrint["kservice: ",kservice];
-ksigning=HMAC[kservice,"aws4_request"];
-awsDebugPrint["ksigning: ",ksigning];
-PrintTemporary["secure signature: ",ksigning];
-     ksigning
-];
-
 getAWSSignature[key_,dateStamp_,regionName_,serviceName_]:=Module[{kdate,kregion,kservice,ksigning,keysecret,keystring},
 keystring=StringJoin["AWS4",key];
 awsDebugPrint["keystring: ",keystring];
-kdate=HMAC[StringToByteArray[keystring],dateStamp];   (* StringJoin[IntegerString[ToCharacterCode@kdate,16,2]] *)
-awsDebugPrint["kdate: ", kdate];
-kregion=HMAC[awsHexStringtoByteArray[kdate],regionName];
-awsDebugPrint["kregion: ",kregion];
-kservice=HMAC[awsHexStringtoByteArray[kregion],serviceName];
-awsDebugPrint["kservice: ",kservice];
-ksigning=HMAC[awsHexStringtoByteArray[kservice],"aws4_request"];
-awsDebugPrint["ksigning: ",ksigning];
-PrintTemporary["secure signature: ",ksigning];
-ksigning
+kdate=HMAC[keystring,dateStamp];
+awsDebugPrint["kdate: ",StringJoin[IntegerString[ToCharacterCode@kdate,16,2]]];
+kregion=HMAC[kdate,regionName];
+awsDebugPrint["kregion: ",StringJoin[IntegerString[ToCharacterCode@kregion,16,2]]];
+kservice=HMAC[kregion,serviceName];
+awsDebugPrint["kservice: ",StringJoin[IntegerString[ToCharacterCode@kservice,16,2]]];
+ksigning=HMAC[kservice,"aws4_request"];
+PrintTemporary["secure signature: ",StringJoin[IntegerString[ToCharacterCode@ksigning,16,2]]];
+     ksigning
 ];
 
 awsSignHeaders[mysecret_String,myawskey_String,body_,region_String,service_String,
@@ -183,25 +127,4 @@ headers];
 End[]
 
 EndPackage[];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
